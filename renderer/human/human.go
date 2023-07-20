@@ -38,6 +38,10 @@ func Human(scoreCard *scorecard.Scorecard, verboseOutput int, termWidth int, use
 			written2, _ := color.New(color.FgMagenta).Fprintf(w, " in %s", scoredObject.ObjectMeta.Namespace)
 			writtenHeaderChars += written2
 		}
+		if scoredObject.FileLocation.Name != "" {
+			written3, _ := color.New(color.FgMagenta).Fprintf(w, " file %s", scoredObject.FileLocation.Name)
+			writtenHeaderChars += written3
+		}
 
 		// Adjust to termsize
 		_, err := fmt.Fprint(w, safeRepeat(" ", min(80, termWidth)-writtenHeaderChars-2))
